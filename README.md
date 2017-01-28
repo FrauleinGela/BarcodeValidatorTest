@@ -2,7 +2,7 @@ Barcode Validator
 ## Installation
 
 Install angular cli
- `npm install -g angular cli`
+ `npm install -g angular-cli`
 Install npm modules
  `npm install`
 
