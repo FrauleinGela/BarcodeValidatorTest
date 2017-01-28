@@ -1,0 +1,57 @@
+<div class="barcode-container">
+  <div class="col-md-12">
+    <h3>Barcode Validator <span *ngIf="currentBarcode">: {{currentBarcode}}</span></h3>
+    <div class="alert alert-danger" *ngIf="errorResult.length > 0">
+      <strong>{{errorResult}}</strong>
+    </div>
+    <div class="alert alert-success" *ngIf="showResult.length >0">
+      <strong>{{showResult}}</strong>
+    </div>
+  </div>
+
+  <div class="col-md-12 barcode-container">
+    <div class="col-md-4 column-default">
+      <div class="panel panel-primary">
+        <div class="panel-heading"> Set number of barcode</div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="barcode">Barcode:</label>
+            <input type="text" class="form-control" accept="image/*" placeholder="barcode number" [(ngModel)]="barcode">
+          </div>
+          <button (click)="validateStringBarcode(barcode)">Validate</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 column-default">
+      <div class="panel panel-primary">
+        <div class="panel-heading"> Scan your barcode by Webcam</div>
+        <div class="panel-body">
+          <div [hidden]="!camIsPlaying" id="div-reader-barcode">
+          </div>
+          <div *ngIf="isProcessing">Is processing your barcode</div>
+          <div>{{dataBarCodeObject}}</div>
+          <button *ngIf="dataBarCodeObject.length > 0" (click)="validateStringBarcode(dataBarCodeObject)">Validate this
+            code
+          </button>
+          <button *ngIf="!camIsPlaying" (click)="playWebcam()">Scan</button>
+          <button *ngIf="camIsPlaying" (click)="stopWebcam()">Stop</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 column-default">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Select a Barcode image</div>
+        <div class="panel-body">
+          <div class="alert alert-danger" *ngIf="!fileImageValid">
+            <strong>Please upload an image</strong>
+          </div>
+          <input class="btn" type="file" (change)="fileChangeEvent($event)"/>
+          <img class="img-thumbnail" alt="Barcode Img" width="304" height="236" *ngIf="imgBarcodeSource"
+               [src]="imgBarcodeSource">
+          <div *ngIf="resultImageBarcode.length >0">Barcode detected: {{resultImageBarcode}}</div>
+          <div *ngIf="imgBarcodeSource && !resultImageBarcode.length >0">No barcode detected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.barcode-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column-default {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+video {
+  with: 100% !important;
+  height: auto;
+}
+
+#interactive.viewport > canvas, #interactive.viewport > video {
+  max-width: 100%;
+  width: 100%;
+}
+
+canvas.drawing, canvas.drawingBuffer {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
